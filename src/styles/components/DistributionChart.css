@@ -1,0 +1,76 @@
+/* Add DistributionChart styles here */
+
+.dist-chart-card {
+  background-color: var(--bg-primary-light);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  border: 1px solid var(--border-light);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+body.dark .dist-chart-card {
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
+}
+
+.dist-chart-header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.dist-chart-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary-light);
+}
+
+body.dark .dist-chart-title {
+  color: var(--text-primary-dark);
+}
+
+.dist-chart-placeholder {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.pie-placeholder {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #4c6ef5 0% 35%,
+    #28a745 35% 65%,
+    #ff9500 65% 85%,
+    #dc3545 85% 100%
+  );
+}
+
+.dist-chart-legend {
+  margin-top: var(--spacing-xl);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+}
+
+.legend-color-box {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  margin-right: var(--spacing-sm);
+}
+.legend-label {
+  color: var(--text-secondary-light);
+}
+body.dark .legend-label {
+  color: var(--text-secondary-dark);
+}

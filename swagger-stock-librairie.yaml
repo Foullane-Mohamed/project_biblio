@@ -1,0 +1,236 @@
+openapi: 3.0.0
+info:
+  title: API - Gestion de stock Librairie
+  version: 1.0.0
+  description: Documentation API simulée pour le frontend de l'application de gestion de stock
+
+paths:
+  /api/library-structure/{libraryId}:
+    get:
+      summary: Obtenir la structure complète d'une librairie
+      parameters:
+        - in: path
+          name: libraryId
+          required: true
+          schema:
+            type: integer
+          description: ID de la librairie
+      responses:
+        '200':
+          description: Arborescence complète
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StructureRayonnage'
+
+  /api/rayonnage/create:
+    put:
+      summary: Créer un rayonnage avec structure
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRayonnageRequest'
+      responses:
+        '200':
+          description: Rayonnage créé
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  rayonnageId:
+                    type: integer
+
+  /api/articles/search:
+    get:
+      summary: Rechercher un article
+      parameters:
+        - in: query
+          name: query
+          required: true
+          schema:
+            type: string
+          description: Chaîne de recherche
+      responses:
+        '200':
+          description: Liste d'articles trouvés
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Article'
+
+  /api/emplacements/{emplacementId}/articles:
+    post:
+      summary: Ajouter un article existant à un emplacement
+      parameters:
+        - in: path
+          name: emplacementId
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                articleId:
+                  type: integer
+      responses:
+        '200':
+          description: Article ajouté
+
+  /api/articles/create:
+    post:
+      summary: Créer un nouvel article
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateArticleRequest'
+      responses:
+        '200':
+          description: Article créé
+
+  /api/compartiments/{compartimentId}/update-etageres:
+    post:
+      summary: Modifier le nombre d'étagères dans un compartiment
+      parameters:
+        - in: path
+          name: compartimentId
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nouveauNombreEtagères:
+                  type: integer
+      responses:
+        '200':
+          description: Nombre d'étagères mis à jour
+
+  /api/etagères/{etagereId}/update-emplacements:
+    post:
+      summary: Modifier le nombre d'emplacements dans une étagère
+      parameters:
+        - in: path
+          name: etagereId
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nouveauNombreEmplacements:
+                  type: integer
+      responses:
+        '200':
+          description: Nombre d'emplacements mis à jour
+
+components:
+  schemas:
+    StructureRayonnage:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+          name:
+            type: string
+          description:
+            type: string
+          compartiments:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: integer
+                etageres:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      emplacements:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            articles:
+                              type: array
+                              items:
+                                $ref: '#/components/schemas/Article'
+
+    CreateRayonnageRequest:
+      type: object
+      properties:
+        libraryId:
+          type: integer
+        nom:
+          type: string
+        description:
+          type: string
+        nombreCompartiments:
+          type: integer
+        nombreEtagèresParCompartiment:
+          type: integer
+        nombreEmplacementsParEtagère:
+          type: integer
+
+    Article:
+      type: object
+      properties:
+        id:
+          type: integer
+        nom:
+          type: string
+        code:
+          type: string
+        isbn:
+          type: string
+        type:
+          type: string
+        prix:
+          type: number
+          format: float
+        couleur:
+          type: string
+
+    CreateArticleRequest:
+      type: object
+      properties:
+        nom:
+          type: string
+        code:
+          type: string
+        isbn:
+          type: string
+        type:
+          type: string
+        prix:
+          type: number
+          format: float
+        couleur:
+          type: string

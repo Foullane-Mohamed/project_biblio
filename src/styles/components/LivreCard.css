@@ -1,0 +1,73 @@
+.livre-card {
+  background-color: var(--bg-primary-light);
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  transition: all var(--transition-medium);
+  display: flex;
+}
+
+body.dark .livre-card {
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
+}
+
+.livre-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Grid View */
+.livre-card.grid {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.livre-card .cover-image {
+  width: 120px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: var(--border-radius-md);
+  margin-bottom: var(--spacing-md);
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.2);
+}
+
+.livre-card .book-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary-light);
+  margin: 0;
+}
+body.dark .livre-card .book-title {
+  color: var(--text-primary-dark);
+}
+
+.livre-card .book-author {
+  font-size: 0.9rem;
+  color: var(--text-secondary-light);
+  margin: var(--spacing-xs) 0 var(--spacing-md);
+}
+body.dark .livre-card .book-author {
+  color: var(--text-secondary-dark);
+}
+
+/* List View */
+.livre-card.list {
+  display: grid;
+  grid-template-columns: 100px 3fr 2fr 1fr auto;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-md);
+}
+
+.livre-card.list .cover-image {
+  width: 60px;
+  height: 90px;
+  margin-bottom: 0;
+}
+
+.livre-card.list .book-info {
+  text-align: left;
+}

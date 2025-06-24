@@ -1,0 +1,46 @@
+.activity-chart-card {
+  background-color: var(--bg-primary-light);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  border: 1px solid var(--border-light);
+  height: 100%;
+}
+
+body.dark .activity-chart-card {
+  background-color: var(--bg-secondary-dark);
+  border-color: var(--border-dark);
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.chart-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary-light);
+}
+
+body.dark .chart-title {
+  color: var(--text-primary-dark);
+}
+
+.chart-placeholder {
+  width: 100%;
+  height: 300px;
+  background-color: var(--bg-secondary-light);
+  border-radius: var(--border-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-tertiary-light);
+  font-family: var(--font-mono);
+}
+
+body.dark .chart-placeholder {
+  background-color: var(--bg-tertiary-dark);
+  color: var(--text-tertiary-dark);
+}
